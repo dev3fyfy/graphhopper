@@ -8,7 +8,8 @@ WORKDIR /app
 COPY . /app
 
 # Build the project
-RUN mvn clean install
+RUN mvn clean install -X -e
+
 
 # Specify the command to run on container start
 CMD ["java", "-jar", "target/my-java-project.jar"]
