@@ -45,6 +45,6 @@ jobs:
           # push it to ECR so that it can
           # be deployed to ECS.
           docker build -t location-healing:$IMAGE_TAG .
-          docker push location-healing:$IMAGE_TAG
+          # docker push location-healing:$IMAGE_TAG
           echo "::set-output name=image::location-healing:$IMAGE_TAG"
 
