@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Build DockerFile
+
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REPOSITORY: location-healing
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build -t location-healing:$IMAGE_TAG .
+          docker push location-healing:$IMAGE_TAG
+          echo "::set-output name=image::location-healing:$IMAGE_TAG"
+
