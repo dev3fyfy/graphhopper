@@ -34,7 +34,9 @@ jobs:
       # - name: Copy artifacts
       #   run: |
       #     cp -R ~/.m2 ./m2
-
+      - name: list files beafore
+        run: |
+           ls -R
       - name: Build, tag, and push image to Amazon ECR
         id: build-image
         env:
@@ -47,4 +49,9 @@ jobs:
           docker build -t location-healing:$IMAGE_TAG .
           # docker push location-healing:$IMAGE_TAG
           echo "::set-output name=image::location-healing:$IMAGE_TAG"
+
+      - name: list files After
+        run: |
+           ls -R
+
 
