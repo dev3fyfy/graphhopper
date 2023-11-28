@@ -21,7 +21,7 @@ RUN mkdir -p /data
 
 WORKDIR .
 
-
+RUN apt-get update && apt-get install -y wget
 
 # Make sure graphhopper.sh is executable
 RUN chmod +x graphhopper.sh
