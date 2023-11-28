@@ -1,5 +1,5 @@
 # Use an official Maven image as a parent image
-FROM maven:3.8-openjdk-11-slim
+FROM maven:3.8.4-openjdk-17-slim
 
 # Set the working directory to /app
 WORKDIR /app
@@ -8,14 +8,10 @@ WORKDIR /app
 COPY . /app
 
 # Build the project
-RUN mvn clean install -X -e
-
+RUN mvn clean install
 
 # Specify the command to run on container start
 CMD ["java", "-jar", "target/my-java-project.jar"]
-
-
-
 
 
 
